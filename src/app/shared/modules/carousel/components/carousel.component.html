@@ -1,0 +1,23 @@
+<section class="carousel-wrapper" [ngStyle]="carouselWrapperStyle">
+    <ul class="carousel-inner" #carousel>
+        <li *ngFor="let item of items" class="carousel-item">
+            <ng-container [ngTemplateOutlet]="item.tpl"></ng-container>
+        </li>
+    </ul>
+</section>
+<!-- <ng-container *ngIf="showControls">
+    <button class="carousel__prev-button" (click)="prev()">
+        <span>chevron_left</span>
+    </button>
+    <button class="carousel__next-button" (click)="next()">
+        <span>chevron_right</span>
+    </button>
+</ng-container> -->
+<ng-container *ngIf="showControls">
+    <button class="carousel__prev-button" (click)="prev()">
+        <span>chevron_left</span>
+    </button>
+    <button class="carousel__next-button" (click)="next()">
+        <span>chevron_right</span>
+    </button>
+</ng-container>
