@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://45.93.100.222:81/api',
-  socketUrl: 'https://45.93.100.222:81',
+  apiUrl: 'https://mini-trello-clone-back-75b3.vercel.app/api',
+  socketUrl: 'https://mini-trello-clone-back-75b3.vercel.app',
 };
