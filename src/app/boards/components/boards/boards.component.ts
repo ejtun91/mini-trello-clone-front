@@ -8,6 +8,7 @@ import { BoardInterface } from '../../../shared/types/board.interface';
 })
 export class BoardsComponent implements OnInit {
   boards: BoardInterface[] = [];
+  showBoard = false;
   constructor(private boardsService: BoardsService) {}
 
   ngOnInit(): void {
@@ -20,5 +21,9 @@ export class BoardsComponent implements OnInit {
     this.boardsService.createBoard(title).subscribe((createdBoad) => {
       this.boards = [...this.boards, createdBoad];
     });
+  }
+
+  triggerBoard() {
+    this.showBoard = true;
   }
 }

@@ -1,9 +1,18 @@
-<div class="inline-form-container" [ngClass]="{ 'inline-form-container-editing': isEditing }" (click)="activeEditing()">
-    <div class="inline-form-text" *ngIf="!isEditing">{{ defaultText }}</div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="isEditing" class="inline-form">
-        <input type="text" formControlName="title" class="input-form-input" [placeholder]="inputPlaceholder"
-            *ngIf="inputType === 'input'" />
-        <textarea *ngIf="inputType === 'textarea'" formControlName="title" class="input-form-input"></textarea>
+<div class="inline-form-container cursor-pointer" [ngClass]="{ 'inline-form-container-editing': isEditing }"
+    (click)="activeEditing()">
+    <div class="none-container flex items-center  hover:bg-gray-300 p-1 rounded-sm" *ngIf="!isEditing">
+        <span class="font-semibold text-lg" *ngIf="inputType === 'input' && hasButton">+</span>
+        <div class="inline-form-text">{{ defaultText }}</div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="isEditing" class="inline-form w-full">
+        <div *ngIf="inputType === 'input'" class="input-container flex items-center inline-form-input w-full">
+            <input type="text" formControlName="title" class="outline-none w-full flex-[80%] text-black"
+                [placeholder]="inputPlaceholder" *ngIf="inputType === 'input'" /><span
+                class="material-symbols-outlined text-gray-500 flex-[20%]">
+                keyboard_return
+            </span>
+        </div>
+        <textarea *ngIf="inputType === 'textarea'" formControlName="title" class="inline-form-input"></textarea>
         <button *ngIf="hasButton" type="submit" [disabled]="form.invalid" class="inline-form-button">
             {{ buttonText }}
         </button>

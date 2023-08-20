@@ -23,14 +23,18 @@ export class InlineFormComponent {
   constructor(private fb: FormBuilder) {}
 
   activeEditing(): void {
-    if (this.title) {
-      this.form.patchValue({ title: this.title });
+    if (!this.isEditing) {
+      if (this.title) {
+        this.form.patchValue({ title: this.title });
+      }
+      this.isEditing = true;
     }
-    this.isEditing = true;
   }
 
   onSubmit(): void {
     if (this.form.value.title) {
+      console.log(this.form);
+
       this.handleSubmit.emit(this.form.value.title);
     }
     this.isEditing = false;

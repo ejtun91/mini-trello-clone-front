@@ -1,23 +1,44 @@
 <div class="task-modal-container" *ngIf="data$ | async as data">
-    <div class="task-modal-header">
-        <inline-form class="task-modal-edit-title-form" [defaultText]="data.task.title"
-            (handleSubmit)="updateTaskName($event)" [title]="data.task.title"></inline-form>
+    <div class="task-modal-header flex">
+        <div class="left flex gap-1 items-center">
+            <span class="material-symbols-outlined text-gray-600">
+                branding_watermark
+            </span>
+            <inline-form class="task-modal-edit-title-form" [defaultText]="data.task.title"
+                (handleSubmit)="updateTaskName($event)" [title]="data.task.title"></inline-form>
+        </div>
+
         <img src="/assets/close_icon.svg" class="task-modal-close" (click)="goToBoard()" />
     </div>
     <div class="task-modal-body">
-        <div>
-            <form [formGroup]="columnForm" class="column-select-container">
-                <select formControlName="columnId" class="column-select" name="" id="">
-                    <option *ngFor="let column of data.columns" [ngValue]="column.id">
-                        {{column.title}}
-                    </option>
-                </select>
+        <div class=" pl-[2em] flex flex-col gap-8">
+            <form [formGroup]="columnForm" class="column-select-container my-0">
+                <div class="col flex gap-2 items-center text-sm">
+                    <span class=" whitespace-nowrap">in List</span>
+                    <select formControlName="columnId" class="bg-transparent underline" name="" id="">
+                        <option *ngFor="let column of data.columns" [ngValue]="column.id">
+                            {{column.title}}
+                        </option>
+                    </select>
+                </div>
             </form>
+            <div class="notifications text-xs  text-gray-600">
+                <span class="block">Notifications</span>
+                <button class="flex gap-1 items-center bg-gray-300 p-2 rounded-sm">
+                    <span class="material-symbols-outlined text-sm">
+                        visibility
+                    </span>
+                    <span>Watch</span>
+                </button>
+            </div>
             <div class="task-modal-description">
-                <div class="task-modal-description-label">Description</div>
+                <div class="task-modal-description-label flex items-center gap-2"><span
+                        class="material-symbols-outlined">
+                        subject
+                    </span> Description</div>
                 <inline-form class="task-modal-edit-description-form" [defaultText]="
-                    data.task.description || 'Add a more detailed description'
-                  " [title]="data.task.description || ''" inputType="textarea" [hasButton]="true" buttonText="Save"
+                      data.task.description || 'Add a more detailed description'
+                    " [title]="data.task.description || ''" inputType="textarea" [hasButton]="true" buttonText="Save"
                     (handleSubmit)="updateTaskDescription($event)"></inline-form>
             </div>
         </div>
@@ -32,4 +53,4 @@
         </div>
     </div>
 </div>
-<div class="task-modal-backdrop"></div>
+<div class="task-modal-backdrop" (click)="goToBoard()"></div>

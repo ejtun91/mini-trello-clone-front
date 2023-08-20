@@ -25,6 +25,8 @@ export class TasksService {
     taskId: string,
     fields: { title?: string; description?: string; columnId?: string }
   ): void {
+    console.log(fields);
+
     this.socketService.emit(SocketEventsEnum.tasksUpdate, {
       boardId,
       taskId,

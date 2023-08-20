@@ -1,17 +1,63 @@
 <app-topbar></app-topbar>
 <div class="boards-page-container">
     <div class="home-left-sidebar-container">
-        <a routerLink="/boards" class="boards-side-menu-option"
-            routerLinkActive="boards-side-menu-option-selected">Boards</a>
-        <a routerLink="/" class="boards-side-menu-option" routerLinkActive="boards-side-menu-option-selected"
-            [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        <div class="upper border-b-[1px] border-solid border-gray-300">
+            <a routerLink="/boards" class="boards-side-menu-option text-sm items-center gap-3"
+                routerLinkActive="boards-side-menu-option-selected"><span class="material-symbols-outlined text-base">
+                    space_dashboard
+                </span> Boards</a>
+            <a routerLink="/" class="boards-side-menu-option text-sm items-center gap-3"
+                routerLinkActive="boards-side-menu-option-selected" [routerLinkActiveOptions]="{ exact: true }"><span
+                    class="material-symbols-outlined text-base">
+                    grid_guides
+                </span> Templates</a>
+            <a routerLink="/" class="boards-side-menu-option text-sm items-center gap-3"
+                routerLinkActive="boards-side-menu-option-selected" [routerLinkActiveOptions]="{ exact: true }"><span
+                    class="material-symbols-outlined text-base">
+                    cottage
+                </span> Home</a>
+        </div>
+        <div class="workspaces text-sm pt-4">
+            <div class="top flex justify-between items-center">
+                <span class="font-semibold text-gray-500 ">Workspaces</span>
+                <span class="text-xl font-semibold text-gray-600">+</span>
+            </div>
+            <div class="item-work flex gap-3 items-center">
+                <span
+                    class="w-[25px] h-[25px] bg-[#45C38E] flex items-center justify-center rounded-sm text-white font-bold">T</span>
+                <span class="font-semibold text-gray-600">Trello Workspace</span>
+            </div>
+        </div>
     </div>
     <div class="boards-section-container">
         <div class="my-boards">
-            <div class="my-boards-section-header">
-                <div class="boards-page-header-name">My boards</div>
+            <div class="my-boards-section-header border-b-[1px] border-solid border-gray-300">
+                <span
+                    class="w-[60px] h-[60px] bg-[#45C38E] flex items-center justify-center rounded-sm text-4xl text-white font-bold">T</span>
+                <div class="boards-page-header-name text-gray-600 !font-semibold">Trello Workspace
+
+                    <div class="private flex items-center mt-1">
+                        <span class="material-symbols-outlined text-sm">
+                            lock
+                        </span>
+                        <span class="text-sm">Private</span>
+                    </div>
+                </div>
+
             </div>
-            <div class="board-tile-list">
+            <div class="no-boards px-[10em] pt-4 text-center" *ngIf="!boards.length">
+                <img src="/assets/no-boards.svg" alt="">
+                <p class="my-3 text-gray-500 text-sm">Boards are where work gets done in Trello. On a board, you can
+                    move cards
+                    between lists
+                    to keep
+                    projects, tasks, and more on track.
+                </p>
+                <button (click)="triggerBoard()"
+                    class="bg-blue-600 text-white px-4 rounded-sm py-1 cursor-pointer">Create your first
+                    board</button>
+            </div>
+            <div class="board-tile-list  pt-4" *ngIf="boards.length || showBoard">
                 <inline-form class="create-board-form" defaultText="Create new board"
                     (handleSubmit)="createBoard($event)"></inline-form>
                 <a [routerLink]="['/boards', board.id]" *ngFor="let board of boards" class="board-tile">

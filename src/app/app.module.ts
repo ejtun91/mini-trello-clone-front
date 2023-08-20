@@ -11,9 +11,10 @@ import { BoardsModule } from './boards/boards.module';
 import { BoardModule } from './board/board.module';
 import { AuthInterceptor } from './auth/services/authinterceptor.service';
 import { SocketService } from './shared/services/socket.service';
+import { SpinnerComponent } from './shared/modules/spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SpinnerComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

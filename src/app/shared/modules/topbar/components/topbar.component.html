@@ -1,14 +1,48 @@
-<div class="navbar-boards">
-    <div class="navbar-left-side">
-        <a routerLink="/" class="navbar-icon">
-            <img src="/assets/home.svg" />
-        </a>
-        <a routerLink="/boards" class="navbar-icon navbar-boards-icon">
-            <img src="/assets/boards.svg" />
-        </a>
+<div class="navbar-boards !bg-white !flex !justify-between !py-6 px-2 border-b-[1px] border-solid border-gray-300">
+    <div class="navbar-left-side flex gap-6">
+        <img routerLink="/" src="/assets/trello-logo.svg" class="navbar-logo cursor-pointer" />
+
+        <div class="links flex gap-2">
+            <div class="link flex items-center cursor-pointer hover:bg-gray-300 px-2 rounded-sm hover:text-white">
+                <span class="text-sm text-gray-600">Workspaces</span>
+                <span class="material-symbols-outlined text-gray-500 text-lg">
+                    expand_more
+                </span>
+            </div>
+            <div class="link flex items-center cursor-pointer hover:bg-gray-300 px-2 rounded-sm hover:text-white">
+                <span class="text-sm text-gray-600">Recent</span>
+                <span class="material-symbols-outlined text-gray-500 text-lg">
+                    expand_more
+                </span>
+            </div>
+            <div class="link flex items-center cursor-pointer hover:bg-gray-300 px-2 rounded-sm hover:text-white">
+                <span class="text-sm text-gray-600">Starred</span>
+                <span class="material-symbols-outlined text-gray-500 text-lg">
+                    expand_more
+                </span>
+            </div>
+            <div class="link flex items-center cursor-pointer hover:bg-gray-300 px-2 rounded-sm hover:text-white">
+                <span class="text-sm text-gray-600">Templates</span>
+                <span class="material-symbols-outlined text-gray-500 text-lg">
+                    expand_more
+                </span>
+            </div>
+        </div>
+        <button class="bg-blue-600 py-2 px-3 text-white rounded-sm text-[14px]">Create</button>
     </div>
-    <img src="/assets/trello-logo-white.svg" class="navbar-logo" />
-    <div class="navbar-right-side">
-        <div class="navbar-icon navbar-logout-icon" (click)="logout()">Logout</div>
+    <div class="navbar-right-side pr-4 flex items-center gap-4">
+        <div class="search-container flex gap-2 items-center border-[1px] border-solid border-gray-300 rounded-md px-2">
+            <span class="material-symbols-outlined text-gray-600 text-lg">
+                search
+            </span>
+            <input type="text" placeholder="Search" class="outline-none py-1" name="" id="">
+        </div>
+        <span class="material-symbols-outlined text-gray-600 text-lg">
+            notifications
+        </span>
+        <div class="navbar-icon text-gray-500 cursor-pointer" (click)="logout()">Logout</div>
+        <div class="user bg-[#5344AA] flex items-center justify-center text-white rounded-md py-1 px-2">
+            <span>{{(user$ | async)?.username}}</span>
+        </div>
     </div>
 </div>
